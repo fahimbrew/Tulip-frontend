@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 const Navbar = () => {
   const links = (
     <>
-      <li>
+      <li className="font-bold">
         <NavLink
           to={"/"}
           className={({ isActive }) =>
@@ -13,7 +13,7 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-      <li>
+      <li className="font-bold">
         <NavLink
           to={"/allCampaign"}
           className={({ isActive }) =>
@@ -23,7 +23,7 @@ const Navbar = () => {
           All Campaign
         </NavLink>
       </li>
-      <li>
+      <li className="font-bold">
         <NavLink
           to={"/addCampaign"}
           className={({ isActive }) =>
@@ -33,7 +33,7 @@ const Navbar = () => {
           Add New Campaign
         </NavLink>
       </li>
-      <li>
+      <li className="font-bold">
         <NavLink
           to={"/myCampaign"}
           className={({ isActive }) =>
@@ -43,7 +43,7 @@ const Navbar = () => {
           My Campaign
         </NavLink>
       </li>
-      <li>
+      <li className="font-bold">
         <NavLink
           to={"/myDonation"}
           className={({ isActive }) =>
