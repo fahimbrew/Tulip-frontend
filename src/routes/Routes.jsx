@@ -4,6 +4,9 @@ import Home from "../pages/Home";
 import ErrorPage from "../pages/ErrorPage";
 import Details from "../pages/Details";
 import AllCampaigns from "../pages/AllCampaigns";
+import Login from "../pages/Login";
+import AuthLayout from "../layouts/AuthLayout";
+import Register from "../pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +26,20 @@ const router = createBrowserRouter([
       {
         path: "/allCampaign",
         element: <AllCampaigns />,
+      },
+    ],
+  },
+  {
+    path: "/auth",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "/auth/login",
+        element: <Login />,
+      },
+      {
+        path: "/auth/register",
+        element: <Register />,
       },
     ],
   },

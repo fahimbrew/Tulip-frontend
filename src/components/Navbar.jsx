@@ -92,7 +92,9 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <Link className="btn bg-purple-400 text-white">Login</Link>
+        <Link to={"/auth/login"} className="btn bg-purple-400 text-white">
+          Login
+        </Link>
       </div>
     </div>
   );
