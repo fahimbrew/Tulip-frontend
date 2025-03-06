@@ -51,7 +51,7 @@ const RunningCampaign = () => {
                 </span>
               </div>
               <button
-                className="mt-4 bg-primary text-white px-4 py-2 rounded-lg w-full hover:bg-primary/80"
+                className="mt-4 bg-purple-400 text-white px-4 py-2 rounded-lg w-full hover:bg-primary/80"
                 onClick={() => navigate(`/campaign/${campaign._id}`)}
               >
                 See More
