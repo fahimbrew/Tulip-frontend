@@ -20,7 +20,7 @@ const AllCampaigns = () => {
         setLoading(false);
       });
   }, []);
-
+  //   console.log(import.meta.env.VITE_apiKey);
   // Filter campaigns based on search and category
   const filteredCampaigns = campaigns.filter(
     (campaign) =>
