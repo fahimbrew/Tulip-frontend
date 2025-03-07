@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const { login } = useContext(AuthContext);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    login(email, password)
+      .then((result) => {
+        // console.log(result.user);
+        toast.success("Logged in successfully");
+        form.reset();
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-xl shadow-md w-96">
         <h2 className="text-2xl font-bold text-center text-gray-800">Login</h2>
 
-        <form className="mt-6">
+        <form onSubmit={handleLogin} className="mt-6">
           {/* Email Input */}
           <label className="block mt-4 mb-2 text-sm text-gray-600">Email</label>
           <input

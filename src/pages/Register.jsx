@@ -1,7 +1,42 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Register = () => {
+  const { signUp, update } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const username = form.username.value;
+    const image = form.image.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const user = {
+      username,
+      image,
+      email,
+      password,
+    };
+    setError("");
+    // console.log(user);
+    if (!/^(?=.*[A-Z])(?=.*[a-z]).{6,}$/.test(password)) {
+      return setError(
+        "Password must contain 1 upper case , 1 lowercase and must be 6 characters long"
+      );
+    }
+    signUp(email, password)
+      .then((result) => {
+        // console.log(result.user);
+        toast.success("User signed up successfully");
+        update(username, image);
+        form.reset();
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-xl shadow-md w-96">
@@ -9,7 +44,7 @@ const Register = () => {
           Register
         </h2>
 
-        <form className="mt-6">
+        <form onSubmit={handleSignUp} className="mt-6">
           {/* Username */}
           <label className="block mb-2 text-sm text-gray-600">Username</label>
           <input
@@ -52,6 +87,7 @@ const Register = () => {
             placeholder="Enter your password"
             required
           />
+          <label className="text-red-600 text-sm">{error}</label>
 
           {/* Register Button */}
           <button type="submit" className="btn btn-primary w-full mt-6">
