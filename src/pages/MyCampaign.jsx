@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const MyCampaign = () => {
   const { user } = useContext(AuthContext);
@@ -12,13 +13,20 @@ const MyCampaign = () => {
         setCampaigns(data);
       });
   }, [user?.email]);
+  //   console.log(campaigns);
 
-  const handleDelete = (id) => {
+  const handleDelete = (_id) => {
     // console.log(id);
-    fetch(`http://localhost:4000/myCampaign/${id}`, {})
+    fetch(`http://localhost:4000/myCampaign/${_id}`, {
+      method: "DELETE",
+    })
       .then((res) => res.json())
       .then((data) => {
-        const remaining = campaigns.filter((campaign) => campaign._id !== id);
+        // console.log(data);
+        if (data.success) {
+          toast.success("Deleted Successfully");
+        }
+        const remaining = campaigns.filter((campaign) => campaign._id !== _id);
         setCampaigns(remaining);
       });
   };
@@ -58,7 +66,7 @@ const MyCampaign = () => {
                       Update
                     </button>
                     <button
-                      onClick={() => handleDelete(campaign._id)}
+                      onClick={() => handleDelete(campaign?._id)}
                       className="btn btn-sm btn-error"
                     >
                       Delete
