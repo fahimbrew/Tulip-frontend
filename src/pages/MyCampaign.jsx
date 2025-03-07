@@ -12,6 +12,16 @@ const MyCampaign = () => {
         setCampaigns(data);
       });
   }, [user?.email]);
+
+  const handleDelete = (id) => {
+    // console.log(id);
+    fetch(`http://localhost:4000/myCampaign/${id}`, {})
+      .then((res) => res.json())
+      .then((data) => {
+        const remaining = campaigns.filter((campaign) => campaign._id !== id);
+        setCampaigns(remaining);
+      });
+  };
   return (
     <div className="p-6 max-w-6xl mx-auto">
       <h2 className="text-3xl font-bold text-center mb-6">My Campaigns</h2>
@@ -48,7 +58,7 @@ const MyCampaign = () => {
                       Update
                     </button>
                     <button
-                      //   onClick={() => handleDelete(campaign._id)}
+                      onClick={() => handleDelete(campaign._id)}
                       className="btn btn-sm btn-error"
                     >
                       Delete
