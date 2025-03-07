@@ -9,6 +9,7 @@ import AuthLayout from "../layouts/AuthLayout";
 import Register from "../pages/Register";
 import AddNewCampaign from "../pages/AddNewCampaign";
 import PrivateRoute from "./PrivateRoute";
+import MyCampaign from "../pages/MyCampaign";
 
 const router = createBrowserRouter([
   {
@@ -41,9 +42,10 @@ const router = createBrowserRouter([
         path: "/myCampaign",
         element: (
           <PrivateRoute>
-            <h1>My Campaign</h1>
+            <MyCampaign />
           </PrivateRoute>
         ),
+        loader: () => fetch("http://localhost:4000/myCampaign"),
       },
       {
         path: "/myDonation",

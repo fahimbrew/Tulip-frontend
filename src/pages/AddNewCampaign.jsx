@@ -1,4 +1,47 @@
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+import toast from "react-hot-toast";
+
 const AddNewCampaign = () => {
+  const { user } = useContext(AuthContext);
+  const handleAddCampaign = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const image = form.image.value;
+    const title = form.title.value;
+    const category = form.category.value;
+    const description = form.description.value;
+    const goalAmount = form.goalAmount.value;
+    const deadline = form.deadline.value;
+    const email = form.email.value;
+    const username = form.username.value;
+
+    const campaign = {
+      image,
+      title,
+      category,
+      description,
+      goalAmount,
+      deadline,
+      email,
+      username,
+    };
+    console.log(campaign);
+    fetch("http://localhost:4000/myCampaign", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(campaign),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          toast.success("Campaign has been added");
+        }
+      });
+  };
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="bg-white p-8 rounded-xl shadow-md w-96">
@@ -6,7 +49,7 @@ const AddNewCampaign = () => {
           Add New Campaign
         </h2>
 
-        <form className="mt-6">
+        <form onSubmit={handleAddCampaign} className="mt-6">
           {/* Image URL */}
           <label className="block mb-2 text-sm text-gray-600">Image URL</label>
           <input
@@ -34,7 +77,7 @@ const AddNewCampaign = () => {
             Campaign Type
           </label>
           <select
-            name="type"
+            name="category"
             className="select select-bordered w-full"
             required
           >
@@ -61,7 +104,7 @@ const AddNewCampaign = () => {
           </label>
           <input
             type="number"
-            name="minDonation"
+            name="goalAmount"
             className="input input-bordered w-full"
             placeholder="Enter minimum donation"
             required
@@ -86,6 +129,7 @@ const AddNewCampaign = () => {
             type="email"
             name="email"
             className="input input-bordered w-full bg-gray-200"
+            value={user ? user.email : ""}
             readOnly
           />
 
@@ -97,6 +141,7 @@ const AddNewCampaign = () => {
             type="text"
             name="username"
             className="input input-bordered w-full bg-gray-200"
+            value={user ? user.displayName : ""}
             readOnly
           />
 
