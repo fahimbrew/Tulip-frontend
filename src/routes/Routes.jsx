@@ -7,6 +7,8 @@ import AllCampaigns from "../pages/AllCampaigns";
 import Login from "../pages/Login";
 import AuthLayout from "../layouts/AuthLayout";
 import Register from "../pages/Register";
+import AddNewCampaign from "../pages/AddNewCampaign";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,30 @@ const router = createBrowserRouter([
       {
         path: "/allCampaign",
         element: <AllCampaigns />,
+      },
+      {
+        path: "/addCampaign",
+        element: (
+          <PrivateRoute>
+            <AddNewCampaign />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myCampaign",
+        element: (
+          <PrivateRoute>
+            <h1>My Campaign</h1>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myDonation",
+        element: (
+          <PrivateRoute>
+            <h1>My Donation</h1>
+          </PrivateRoute>
+        ),
       },
     ],
   },

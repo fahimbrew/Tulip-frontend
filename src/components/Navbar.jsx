@@ -29,36 +29,40 @@ const Navbar = () => {
           All Campaign
         </NavLink>
       </li>
-      <li className="font-bold">
-        <NavLink
-          to={"/addCampaign"}
-          className={({ isActive }) =>
-            `${isActive ? "text-pink-500" : "hover:text-purple-400"}`
-          }
-        >
-          Add New Campaign
-        </NavLink>
-      </li>
-      <li className="font-bold">
-        <NavLink
-          to={"/myCampaign"}
-          className={({ isActive }) =>
-            `${isActive ? "text-pink-500" : "hover:text-purple-400"}`
-          }
-        >
-          My Campaign
-        </NavLink>
-      </li>
-      <li className="font-bold">
-        <NavLink
-          to={"/myDonation"}
-          className={({ isActive }) =>
-            `${isActive ? "text-pink-500" : "hover:text-purple-400"}`
-          }
-        >
-          My Donation
-        </NavLink>
-      </li>
+      {user && (
+        <>
+          <li className="font-bold">
+            <NavLink
+              to={"/addCampaign"}
+              className={({ isActive }) =>
+                `${isActive ? "text-pink-500" : "hover:text-purple-400"}`
+              }
+            >
+              Add New Campaign
+            </NavLink>
+          </li>
+          <li className="font-bold">
+            <NavLink
+              to={"/myCampaign"}
+              className={({ isActive }) =>
+                `${isActive ? "text-pink-500" : "hover:text-purple-400"}`
+              }
+            >
+              My Campaign
+            </NavLink>
+          </li>
+          <li className="font-bold">
+            <NavLink
+              to={"/myDonation"}
+              className={({ isActive }) =>
+                `${isActive ? "text-pink-500" : "hover:text-purple-400"}`
+              }
+            >
+              My Donation
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   return (

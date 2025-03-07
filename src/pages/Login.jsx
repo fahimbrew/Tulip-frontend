@@ -4,7 +4,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const { login, googleSignIn } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,6 +15,15 @@ const Login = () => {
         // console.log(result.user);
         toast.success("Logged in successfully");
         form.reset();
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+  const handleGoogleLogin = () => {
+    googleSignIn()
+      .then((result) => {
+        toast.success("Successfully logged in");
       })
       .catch((error) => {
         toast.error(error.message);
@@ -53,6 +62,18 @@ const Login = () => {
             Login
           </button>
         </form>
+        {/* Google Sign-in */}
+        <button
+          onClick={handleGoogleLogin}
+          className="btn btn-outline w-full mt-4"
+        >
+          <img
+            src="https://www.svgrepo.com/show/355037/google.svg"
+            alt="Google"
+            className="w-5 h-5 mr-2"
+          />
+          Sign in with Google
+        </button>
 
         {/* Register & Forgot Password Links */}
         <div className="mt-4 text-sm text-center">

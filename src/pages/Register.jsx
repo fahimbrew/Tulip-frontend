@@ -13,12 +13,7 @@ const Register = () => {
     const image = form.image.value;
     const email = form.email.value;
     const password = form.password.value;
-    const user = {
-      username,
-      image,
-      email,
-      password,
-    };
+
     setError("");
     // console.log(user);
     if (!/^(?=.*[A-Z])(?=.*[a-z]).{6,}$/.test(password)) {
@@ -26,6 +21,7 @@ const Register = () => {
         "Password must contain 1 upper case , 1 lowercase and must be 6 characters long"
       );
     }
+
     signUp(email, password)
       .then((result) => {
         // console.log(result.user);
@@ -94,16 +90,6 @@ const Register = () => {
             Register
           </button>
         </form>
-
-        {/* Google Sign-in */}
-        <button className="btn btn-outline w-full mt-4">
-          <img
-            src="https://www.svgrepo.com/show/355037/google.svg"
-            alt="Google"
-            className="w-5 h-5 mr-2"
-          />
-          Sign in with Google
-        </button>
 
         {/* Already have an account */}
         <div className="mt-4 text-sm text-center">
