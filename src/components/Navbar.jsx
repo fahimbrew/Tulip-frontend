@@ -43,7 +43,7 @@ const Navbar = () => {
           </li>
           <li className="font-bold">
             <NavLink
-              to={"/myCampaign"}
+              to={`/myCampaign/${user?.email}`}
               className={({ isActive }) =>
                 `${isActive ? "text-pink-500" : "hover:text-purple-400"}`
               }

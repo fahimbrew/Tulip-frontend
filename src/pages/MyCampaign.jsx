@@ -1,50 +1,63 @@
-import React from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const MyCampaign = () => {
-  const campaigns = useLoaderData();
+  const { user } = useContext(AuthContext);
+
+  const [campaigns, setCampaigns] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:4000/myCampaign/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCampaigns(data);
+      });
+  }, [user?.email]);
   return (
     <div className="p-6 max-w-6xl mx-auto">
       <h2 className="text-3xl font-bold text-center mb-6">My Campaigns</h2>
 
       {campaigns.length === 0 ? (
-        <p className="text-center text-gray-600">
-          You have not created any campaigns yet.
-        </p>
+        <p className="text-center text-gray-600">No campaigns found.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {campaigns.map((campaign) => (
-            <div
-              key={campaign._id}
-              className="bg-white p-4 shadow-md rounded-lg"
-            >
-              <img
-                src={campaign?.image}
-                alt={campaign?.title}
-                className="w-full h-40 object-cover rounded-lg"
-              />
-              <h3 className="text-xl font-semibold mt-2">{campaign?.title}</h3>
-              <p className="text-gray-600">
-                {campaign.description.slice(0, 100)}...
-              </p>
-              <p className="text-blue-500 mt-2">
-                Minimum Donation: ${campaign?.goalAmount}
-              </p>
-              <p className="text-red-500">
-                Deadline: {new Date(campaign?.deadline).toDateString()}
-              </p>
-
-              {/* Action Buttons */}
-              <div className="flex justify-between mt-4">
-                <button className="btn btn-sm btn-outline btn-primary">
-                  Edit
-                </button>
-                <button className="btn btn-sm btn-outline btn-error">
-                  Delete
-                </button>
-              </div>
-            </div>
-          ))}
+        <div className="overflow-x-auto">
+          <table className="table-auto w-full border-collapse border border-gray-300">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="border border-gray-300 px-4 py-2">Title</th>
+                <th className="border border-gray-300 px-4 py-2">
+                  Min Donation
+                </th>
+                <th className="border border-gray-300 px-4 py-2">Deadline</th>
+                <th className="border border-gray-300 px-4 py-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {campaigns.map((campaign) => (
+                <tr key={campaign._id} className="text-center">
+                  <td className="border border-gray-300 px-4 py-2">
+                    {campaign?.title}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    ${campaign?.goalAmount}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {new Date(campaign?.deadline).toDateString()}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    <button className="btn btn-sm btn-primary mr-2">
+                      Update
+                    </button>
+                    <button
+                      //   onClick={() => handleDelete(campaign._id)}
+                      className="btn btn-sm btn-error"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>
