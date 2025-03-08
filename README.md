@@ -1,12 +1,17 @@
-# React + Vite
+# Crowd Cube
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **Crowd Cube** website! This platform allows users to make and track donations to various winter charity campaigns.
 
-Currently, two official plugins are available:
+# Category : (Tulip)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live Site
 
-## Expanding the ESLint configuration
+[Visit our live site here](https://crowd-cube-313.netlify.app/)
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+
+- **Easy Donation Tracking**: Users can view and manage all their donations in one place.
+- **Responsive Design**: Optimized for desktops, tablets, and mobile devices to provide a seamless experience.
+- **Campaign Details**: Each donation entry includes details such as campaign title, category, donation amount, and date.
+- **Image Display**: Donations feature campaign images to visually represent the cause.
+- **Delete and Update Created Campaign**: Users can easily remove campaigns they no longer wish to track and can update the information as well.
