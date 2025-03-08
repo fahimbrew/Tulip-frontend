@@ -1,5 +1,5 @@
 import { ShieldCheck, Rocket, Globe, BarChart } from "lucide-react";
-
+import { Typewriter } from "react-simple-typewriter";
 const WhyChooseUs = () => {
   const features = [
     {
@@ -33,7 +33,19 @@ const WhyChooseUs = () => {
       <div className="container mx-auto px-6 text-center">
         <h2 className="text-3xl font-bold text-gray-800">Why Choose Us?</h2>
         <p className="text-gray-600 mt-2">
-          Discover the benefits of using our crowdfunding platform.
+          Discover the benefits of using our{" "}
+          <span className="font-bold text-red-500">
+            <Typewriter
+              words={["crowdfunding platform", "CrowdCube", "Donation"]}
+              loop={5}
+              cursor
+              cursorStyle="_"
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={1000}
+            />
+          </span>
+          .
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">

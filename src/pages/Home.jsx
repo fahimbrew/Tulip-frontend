@@ -1,3 +1,4 @@
+import { Fade } from "react-awesome-reveal";
 import Banner from "../components/Banner";
 import RunningCampaign from "../components/RunningCampaign";
 import SuccessStories from "../components/SuccessStories";
@@ -6,15 +7,24 @@ import WhyChooseUs from "../components/WhyChooseUs";
 const Home = () => {
   return (
     <div>
-      <Banner />
+      <Fade cascade>
+        <Banner />
+      </Fade>
+
       <div>
-        <RunningCampaign />
+        <Fade cascade>
+          <RunningCampaign />
+        </Fade>
       </div>
       <div>
-        <WhyChooseUs />
+        <Fade cascade>
+          <WhyChooseUs />
+        </Fade>
       </div>
       <div>
-        <SuccessStories />
+        <Fade cascade>
+          <SuccessStories />
+        </Fade>
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ const RunningCampaign = () => {
         </h2>
         <p className="text-gray-600 text-center mt-2">
           Support active campaigns before their{" "}
-          <span className="font-bold text-red-800">
+          <span className="font-bold text-red-500">
             {" "}
             <Typewriter
               words={["Deadline", "Opportunities", "Repeat!"]}

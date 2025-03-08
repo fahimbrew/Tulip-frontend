@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
     "@tailwindcss/vite": "^4.0.10",
     "axios": "^1.8.1",
     "firebase": "^11.4.0",
     "react": "^19.0.0",
+    "react-awesome-reveal": "^4.3.1",
     "react-dom": "^19.0.0",
     "react-fast-marquee": "^1.6.5",
     "react-hot-toast": "^2.5.2",
