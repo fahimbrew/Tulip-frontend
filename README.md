@@ -1,6 +1,6 @@
 # Crowd Cube
 
-Welcome to the **Crowd Cube** website! This platform allows users to make and track donations to various winter charity campaigns.
+Welcome to the **Crowd Cube** website! This platform allows users to make and track campaigns to various crowd funding campaigns.
 
 # Category : (Tulip)
 
@@ -10,7 +10,7 @@ Welcome to the **Crowd Cube** website! This platform allows users to make and tr
 
 ## Features
 
-- **Easy Donation Tracking**: Users can view and manage all their donations in one place.
+- **Easy Campaigns Tracking**: Users can view and manage all their donations in one place.
 - **Responsive Design**: Optimized for desktops, tablets, and mobile devices to provide a seamless experience.
 - **Campaign Details**: Each donation entry includes details such as campaign title, category, donation amount, and date.
 - **Image Display**: Donations feature campaign images to visually represent the cause.
