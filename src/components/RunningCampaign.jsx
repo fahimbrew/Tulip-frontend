@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Typewriter } from "react-simple-typewriter";
 
 const RunningCampaign = () => {
   const [campaigns, setCampaign] = useState([]);
@@ -19,7 +20,19 @@ const RunningCampaign = () => {
           Running Campaigns
         </h2>
         <p className="text-gray-600 text-center mt-2">
-          Support active campaigns before their deadline!
+          Support active campaigns before their{" "}
+          <span className="font-bold text-red-800">
+            {" "}
+            <Typewriter
+              words={["Deadline", "Opportunities", "Repeat!"]}
+              loop={5}
+              cursor
+              cursorStyle="_"
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={1000}
+            />
+          </span>
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">

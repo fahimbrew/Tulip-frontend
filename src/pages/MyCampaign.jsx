@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MyCampaign = () => {
   const { user } = useContext(AuthContext);
@@ -24,6 +25,7 @@ const MyCampaign = () => {
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
+
         if (data.success) {
           toast.success("Deleted Successfully");
         }
