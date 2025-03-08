@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const MyCampaign = () => {
   const { user } = useContext(AuthContext);
@@ -62,9 +63,12 @@ const MyCampaign = () => {
                     {new Date(campaign?.deadline).toDateString()}
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
-                    <button className="btn btn-sm btn-primary mr-2">
+                    <Link
+                      to={`/updateCampaign/${campaign?._id}`}
+                      className="btn btn-sm btn-primary mr-2"
+                    >
                       Update
-                    </button>
+                    </Link>
                     <button
                       onClick={() => handleDelete(campaign?._id)}
                       className="btn btn-sm btn-error"

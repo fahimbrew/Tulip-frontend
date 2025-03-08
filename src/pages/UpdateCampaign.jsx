@@ -1,10 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import { useLoaderData } from "react-router-dom";
 import toast from "react-hot-toast";
 
-const AddNewCampaign = () => {
+const UpdateCampaign = () => {
   const { user } = useContext(AuthContext);
-  const handleAddCampaign = (e) => {
+  const data = useLoaderData();
+  const [campaign, setCampaign] = useState(data);
+
+  const handleUpdateCampaign = (e) => {
     e.preventDefault();
     const form = e.target;
     const image = form.image.value;
@@ -15,8 +19,7 @@ const AddNewCampaign = () => {
     const deadline = form.deadline.value;
     const email = form.email.value;
     const username = form.username.value;
-
-    const campaign = {
+    const updatedCampaign = {
       image,
       title,
       category,
@@ -27,29 +30,30 @@ const AddNewCampaign = () => {
       username,
     };
     // console.log(campaign);
-    fetch("http://localhost:4000/myCampaign", {
-      method: "POST",
+    fetch(`http://localhost:4000/myCampaigns/${campaign._id}`, {
+      method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(campaign),
+      body: JSON.stringify(updatedCampaign),
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
-        if (data.insertedId) {
-          toast.success("Campaign has been added");
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success("SUccessfully Updated");
         }
+        setCampaign(data);
       });
   };
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="bg-white p-8 rounded-xl shadow-md w-96">
         <h2 className="text-2xl font-bold text-center text-gray-800">
-          Add New Campaign
+          Update Campaign
         </h2>
 
-        <form onSubmit={handleAddCampaign} className="mt-6">
+        <form onSubmit={handleUpdateCampaign} className="mt-6">
           {/* Image URL */}
           <label className="block mb-2 text-sm text-gray-600">Image URL</label>
           <input
@@ -57,6 +61,7 @@ const AddNewCampaign = () => {
             name="image"
             className="input input-bordered w-full"
             placeholder="Enter image URL"
+            defaultValue={campaign?.image}
             required
           />
 
@@ -69,6 +74,7 @@ const AddNewCampaign = () => {
             name="title"
             className="input input-bordered w-full"
             placeholder="Enter campaign title"
+            defaultValue={campaign?.title}
             required
           />
 
@@ -79,6 +85,7 @@ const AddNewCampaign = () => {
           <select
             name="category"
             className="select select-bordered w-full"
+            defaultValue={campaign?.category}
             required
           >
             <option value="Personal Issue">Personal Issue</option>
@@ -95,6 +102,7 @@ const AddNewCampaign = () => {
             name="description"
             className="textarea textarea-bordered w-full"
             placeholder="Enter campaign details"
+            defaultValue={campaign?.description}
             required
           />
 
@@ -107,6 +115,7 @@ const AddNewCampaign = () => {
             name="goalAmount"
             className="input input-bordered w-full"
             placeholder="Enter minimum donation"
+            defaultValue={campaign?.goalAmount}
             required
           />
 
@@ -118,6 +127,7 @@ const AddNewCampaign = () => {
             type="date"
             name="deadline"
             className="input input-bordered w-full"
+            defaultValue={campaign?.deadline}
             required
           />
 
@@ -150,7 +160,7 @@ const AddNewCampaign = () => {
             type="submit"
             className="btn bg-purple-400 text-white w-full mt-6"
           >
-            Add Campaign
+            Update Campaign
           </button>
         </form>
       </div>
@@ -158,4 +168,4 @@ const AddNewCampaign = () => {
   );
 };
 
-export default AddNewCampaign;
+export default UpdateCampaign;
