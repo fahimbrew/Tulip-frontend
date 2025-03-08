@@ -27,7 +27,7 @@ const AddNewCampaign = () => {
       username,
     };
     // console.log(campaign);
-    fetch("http://localhost:4000/myCampaign", {
+    fetch("https://backend-server-eosin.vercel.app/myCampaign", {
       method: "POST",
       headers: {
         "content-type": "application/json",

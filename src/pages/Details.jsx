@@ -1,12 +1,42 @@
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Details = () => {
+  const { user } = useContext(AuthContext);
   const campaign = useLoaderData();
   // Calculate percentage raised
   const percentageRaised = Math.min(
     (campaign.raisedAmount / campaign.goalAmount) * 100,
     100
   );
+  const handleDonate = () => {
+    // console.log("I will donate");
+    const donationData = {
+      email: user?.email,
+      donorName: user?.displayName,
+      campaignTitle: campaign.title,
+      campaignId: campaign._id,
+      image: campaign.image,
+      amount: 100, // Fixed
+      date: new Date(),
+    };
+    fetch("https://backend-server-eosin.vercel.app/donate", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(donationData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        if (data.insertedId) {
+          toast.success("$100 Contributed Successfully");
+        }
+      });
+  };
 
   // Calculate remaining days
   const deadlineDate = new Date(campaign.deadline);
@@ -50,7 +80,10 @@ const Details = () => {
         </div>
 
         {/* Donation button */}
-        <button className="mt-6 bg-purple-400 text-white px-6 py-3 rounded-lg w-full hover:bg-primary/80">
+        <button
+          onClick={handleDonate}
+          className="mt-6 bg-purple-400 text-white px-6 py-3 rounded-lg w-full hover:bg-primary/80"
+        >
           Contribute Now
         </button>
       </div>

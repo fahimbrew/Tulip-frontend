@@ -30,13 +30,16 @@ const UpdateCampaign = () => {
       username,
     };
     // console.log(campaign);
-    fetch(`http://localhost:4000/myCampaigns/${campaign._id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedCampaign),
-    })
+    fetch(
+      `https://backend-server-eosin.vercel.app/myCampaigns/${campaign._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedCampaign),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

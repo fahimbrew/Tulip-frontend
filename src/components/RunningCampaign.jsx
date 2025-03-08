@@ -6,7 +6,7 @@ const RunningCampaign = () => {
   const [campaigns, setCampaign] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("http://localhost:4000/running-campaign")
+    fetch("https://backend-server-eosin.vercel.app/running-campaign")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

@@ -10,7 +10,7 @@ const AllCampaigns = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/all")
+      .get("https://backend-server-eosin.vercel.app/all")
       .then((response) => {
         setCampaigns(response.data);
         setLoading(false);

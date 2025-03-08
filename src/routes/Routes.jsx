@@ -11,6 +11,7 @@ import AddNewCampaign from "../pages/AddNewCampaign";
 import PrivateRoute from "./PrivateRoute";
 import MyCampaign from "../pages/MyCampaign";
 import UpdateCampaign from "../pages/UpdateCampaign";
+import MyDonations from "../pages/MyDonations";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,8 @@ const router = createBrowserRouter([
             <Details />
           </PrivateRoute>
         ),
-        loader: ({ params }) => fetch(`http://localhost:4000/all/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`https://backend-server-eosin.vercel.app/all/${params.id}`),
       },
       {
         path: "/allCampaign",
@@ -59,13 +61,15 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:4000/myCampaigns/${params.id}`),
+          fetch(
+            `https://backend-server-eosin.vercel.app/myCampaigns/${params.id}`
+          ),
       },
       {
-        path: "/myDonation",
+        path: "/myDonation/:email",
         element: (
           <PrivateRoute>
-            <h1>My Donation</h1>
+            <MyDonations />
           </PrivateRoute>
         ),
       },

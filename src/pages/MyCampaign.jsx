@@ -9,7 +9,7 @@ const MyCampaign = () => {
 
   const [campaigns, setCampaigns] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:4000/myCampaign/${user?.email}`)
+    fetch(`https://backend-server-eosin.vercel.app/myCampaign/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setCampaigns(data);
@@ -19,7 +19,7 @@ const MyCampaign = () => {
 
   const handleDelete = (_id) => {
     // console.log(id);
-    fetch(`http://localhost:4000/myCampaign/${_id}`, {
+    fetch(`https://backend-server-eosin.vercel.app/myCampaign/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
